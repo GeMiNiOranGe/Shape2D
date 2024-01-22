@@ -1,5 +1,6 @@
 #include <point2d.hpp>
 
+SHAPE2D_BEGIN
 Point2D::Point2D(double _x_coord, double _y_coord) {
     this->x_coord = _x_coord;
     this->y_coord = _y_coord;
@@ -36,3 +37,4 @@ std::ostream &operator<<(std::ostream &_ostr, const Point2D &_val) {
     _ostr << "(" << _val.get_x_coordinates() << ", " << _val.get_y_coordinates() << ")";
     return _ostr;
 }
+SHAPE2D_END

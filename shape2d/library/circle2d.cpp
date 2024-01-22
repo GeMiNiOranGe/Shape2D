@@ -1,5 +1,6 @@
 #include <circle2d.hpp>
 
+SHAPE2D_BEGIN
 Circle2D::Circle2D(double _x_coord, double _y_coord, double _radius) {
     this->center = {_x_coord, _y_coord};
     this->radius = _radius;
@@ -77,3 +78,4 @@ std::ostream &operator<<(std::ostream &_ostr, const Circle2D &_val) {
     _ostr << "Ban kinh: " << _val.get_radius();
     return _ostr;
 }
+SHAPE2D_END

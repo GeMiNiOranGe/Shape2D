@@ -1,7 +1,7 @@
 #include <circle2d.hpp>
 
 int main() {
-    Circle2D t1, t2;
+    shape2d::Circle2D t1, t2;
     std::cin >> t1 >> t2;
     std::cout << "duong tron 1 co chu vi la: " << t1.calculate_perimeter() << std::endl;
     std::cout << "duong tron 1 co dien tich la: " << t1.calculate_area() << std::endl;

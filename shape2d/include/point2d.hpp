@@ -5,13 +5,16 @@
 #include <cmath>
 #include <iostream>
 
+#include <macros.hpp>
+
+SHAPE2D_BEGIN
 class Point2D {
 private:
     double x_coord;
     double y_coord;
 
 public:
-    Point2D(double _x_coord = 0, double _y_coord = 0);
+    Point2D(double _x_coord = 0.0, double _y_coord = 0.0);
 
     const double &get_x_coordinates() const;
     const double &get_y_coordinates() const;
@@ -24,5 +27,6 @@ public:
 
 std::istream &operator>>(std::istream &_istr, Point2D &_val);
 std::ostream &operator<<(std::ostream &_ostr, const Point2D &_val);
+SHAPE2D_END
 
 #endif // end POINT2D_HPP
