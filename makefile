@@ -41,18 +41,18 @@ OBJECTS      := $(SOURCES:%.cpp=%.o)                                # Replace *.
 OBJECTS_PATH := $(patsubst $(SOURCE_DIR)/%,$(BIN_DIR)/%,$(OBJECTS)) # Appprefix .bin to *.o file into .bin/*.o
 
 #===< LINKER >============#
-build:			$(EXECUTABLE)
-$(EXECUTABLE):	$(OBJECTS_PATH)
+build:          $(EXECUTABLE)
+$(EXECUTABLE):  $(OBJECTS_PATH)
 	@$(CXX) $(LDFLAGS) -o $(EXECUTABLE) $(OBJECTS_PATH)
 	@echo Linked file - $(subst /,\,$(CURDIR)/$(EXECUTABLE))
 	@echo Build successful!!!
 
 #===< COMPILER >==========#
-$(BIN_DIR)/%.o:	$(SOURCE_DIR)/%.cpp	$(HEADERS)	| $(BIN_DIR)
+$(BIN_DIR)/%.o:	$(SOURCE_DIR)/%.cpp $(HEADERS) | $(BIN_DIR)
 	@$(CXX) $(CXXFLAGS) -o $@ $<
 	@echo Compiled file - $(subst /,\,$(CURDIR)/$@)
 
-$(BIN_DIR)/main.o:	main.cpp		$(HEADERS)	| $(BIN_DIR)
+$(BIN_DIR)/main.o:         main.cpp $(HEADERS) | $(BIN_DIR)
 	@$(CXX) $(CXXFLAGS) -o $@ $<
 	@echo Compiled file - $(subst /,\,$(CURDIR)/$@)
 
@@ -61,8 +61,8 @@ $(BIN_DIR):
 	@mkdir $(BIN_DIR)
 	@echo Created directory - $(subst /,\,$(CURDIR)/$(BIN_DIR))
 
-rebuild:		clean	build
-build-and-run:	build	run
+rebuild:        clean   build
+build-and-run:  build   run
 run:
 	@$(EXECUTABLE)
 
