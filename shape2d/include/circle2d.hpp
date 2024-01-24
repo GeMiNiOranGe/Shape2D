@@ -8,6 +8,8 @@
 #include <geometry2d.hpp>
 #include <macros.hpp>
 #include <point2d.hpp>
+#include <point_position.hpp>
+#include <circle_position.hpp>
 
 SHAPE2D_BEGIN
 class Circle2D : public Geometry2D {
@@ -25,8 +27,8 @@ public:
     void set_center(const Point2D &_point);
     void set_radius(const double &_radius);
 
-    void xacDinhViTriTuongDoiDiem(Point2D);
-    void xacDinhViTriTuongDoi(Circle2D);
+    PointPosition determine_relative_position(const Point2D &_point) const;
+    CirclePosition determine_relative_position(const Circle2D &_circle) const;
 
     double calculate_perimeter() const override;
     double calculate_area() const override;

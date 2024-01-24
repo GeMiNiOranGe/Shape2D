@@ -25,35 +25,32 @@ void Circle2D::set_radius(const double &_radius) {
     this->radius = _radius;
 }
 
-void Circle2D::xacDinhViTriTuongDoiDiem(Point2D diemCanXacDinh) {
-    double khoangCachTamVaDiem = this->center.calculate_distance_to(diemCanXacDinh);
-
-    if (khoangCachTamVaDiem > this->radius) {
-        std::cout << "Diem nam ngoai duong tron";
-    } else if (khoangCachTamVaDiem == this->radius) {
-        std::cout << "Diem nam tren duong tron";
-    } else {
-        std::cout << "Diem nam trong duong tron";
-    }
+PointPosition Circle2D::determine_relative_position(const Point2D &_point) const {
+    double distance = this->center.calculate_distance_to(_point);
+    if (distance > this->radius)
+        return PointPosition::OUTSIDE;
+    if (distance == this->radius)
+        return PointPosition::ON;
+    if (distance < this->radius)
+        return PointPosition::INSIDE;
+    return PointPosition::CENTER;
 }
-void Circle2D::xacDinhViTriTuongDoi(Circle2D duongTronCanXacDinh) {
-    double khoangCach2Tam = this->center.calculate_distance_to(duongTronCanXacDinh.get_center());
-    double banKinh2TamTru = abs(get_radius() - duongTronCanXacDinh.get_radius());
-    double banKinh2TamCong = get_radius() + duongTronCanXacDinh.get_radius();
+CirclePosition Circle2D::determine_relative_position(const Circle2D &_circle) const {
+    double distance_centers = this->center.calculate_distance_to(_circle.get_center());
+    double difference_radius = abs(get_radius() - _circle.get_radius());
+    double sum_radius = get_radius() + _circle.get_radius();
 
-    if (banKinh2TamTru < khoangCach2Tam && khoangCach2Tam < banKinh2TamCong) {
-        std::cout << "2 duong tron cat nhau";
-    } else if (khoangCach2Tam == banKinh2TamCong) {
-        std::cout << "2 duong tron tiep xuc ngoai";
-    } else if (khoangCach2Tam == banKinh2TamTru) {
-        std::cout << "2 duong tron tiep xuc trong";
-    } else if (khoangCach2Tam > banKinh2TamCong) {
-        std::cout << "2 duong tron ngoai nhau";
-    } else if (khoangCach2Tam < banKinh2TamTru) {
-        std::cout << "2 duong tron chua nhau";
-    } else if (khoangCach2Tam == 0) {
-        std::cout << "2 duong tron dong tam";
-    }
+    if (distance_centers == 0)
+        return CirclePosition::CONCENTRIC;
+    if (distance_centers < difference_radius)
+        return CirclePosition::LIE_INSIDE;
+    if (distance_centers == difference_radius)
+        return CirclePosition::TOUCH_INTERNAL;
+    if (difference_radius < distance_centers && distance_centers < sum_radius)
+        return CirclePosition::INTERSECT;
+    if (distance_centers == sum_radius)
+        return CirclePosition::TOUCH_EXTERNAL;
+    return CirclePosition::LIE_OUTSIDE;
 }
 
 double Circle2D::calculate_perimeter() const {
@@ -66,16 +63,15 @@ double Circle2D::calculate_area() const {
 std::istream &operator>>(std::istream &_istr, Circle2D &_val) {
     Point2D center;
     double radius;
-    std::cout << "Nhap toa do tam duong tron: ";
+    std::cout << "Input center: ";
     _istr >> center;
-    std::cout << "Nhap ban kinh duong tron: ";
+    std::cout << "Input radius: ";
     _istr >> radius;
     _val = {center, radius};
     return _istr;
 }
 std::ostream &operator<<(std::ostream &_ostr, const Circle2D &_val) {
-    _ostr << "Toa do tam duong tron la: " << _val.get_center() << std::endl;
-    _ostr << "Ban kinh: " << _val.get_radius();
+    _ostr << "Center: " << _val.get_center() << ", radius: " << _val.get_radius();
     return _ostr;
 }
 SHAPE2D_END
