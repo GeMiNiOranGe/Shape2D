@@ -1,9 +1,12 @@
+#include <iomanip>
+
 #include <circle2d.hpp>
 
 int main() {
     shape2d::Point2D point(0, 0);
-    shape2d::Circle2D circle_one(0, 0, 4), circle_two(1, 0, 2);
+    shape2d::Circle2D circle_one(0, 0, 5), circle_two(1, 0, 3);
 
+    std::cout << std::fixed << std::setprecision(3);
     std::cout << "Point: " << point << std::endl;
     std::cout << "Circle one: "
               << "Perimeter = " << circle_one.calculate_perimeter()
