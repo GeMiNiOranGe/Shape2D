@@ -27,13 +27,14 @@ void Circle2D::set_radius(const double &_radius) {
 
 PointPosition Circle2D::determine_relative_position(const Point2D &_point) const {
     double distance = this->center.calculate_distance_to(_point);
-    if (distance > this->radius)
-        return PointPosition::OUTSIDE;
-    if (distance == this->radius)
-        return PointPosition::ON;
+
+    if (distance == 0)
+        return PointPosition::CENTER;
     if (distance < this->radius)
         return PointPosition::INSIDE;
-    return PointPosition::CENTER;
+    if (distance == this->radius)
+        return PointPosition::ON;
+    return PointPosition::OUTSIDE;
 }
 CirclePosition Circle2D::determine_relative_position(const Circle2D &_circle) const {
     double distance_centers = this->center.calculate_distance_to(_circle.get_center());
