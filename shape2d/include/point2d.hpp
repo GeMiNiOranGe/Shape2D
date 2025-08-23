@@ -16,11 +16,11 @@ private:
 public:
     Point2D(double _x_coord = 0.0, double _y_coord = 0.0);
 
-    const double &get_x_coordinates() const;
-    const double &get_y_coordinates() const;
+    const double &get_x_coord() const;
+    const double &get_y_coord() const;
 
-    void set_x_coordinates(const double &_x_coord);
-    void set_y_coordinates(const double &_y_coord);
+    void set_x_coord(const double &_x_coord);
+    void set_y_coord(const double &_y_coord);
 
     double calculate_distance_to(const Point2D &_other) const;
 };
