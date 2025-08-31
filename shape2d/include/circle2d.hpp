@@ -14,28 +14,28 @@
 SHAPE2D_BEGIN
 class Circle2D : public Geometry2D {
 private:
-    Point2D center;
-    double radius;
+    Point2D center_;
+    double radius_;
 
 public:
-    Circle2D(double _x_coord = 0.0, double _y_coord = 0.0, double _radius = 0.0);
-    Circle2D(Point2D _center, double _radius = 0.0);
+    Circle2D(double x_coord = 0.0, double y_coord = 0.0, double radius = 0.0);
+    Circle2D(Point2D center, double radius = 0.0);
 
     const Point2D &get_center() const;
     const double &get_radius() const;
 
-    void set_center(const Point2D &_point);
-    void set_radius(const double &_radius);
+    void set_center(const Point2D &point);
+    void set_radius(const double &radius);
 
-    PointPosition determine_relative_position(const Point2D &_point) const;
-    CirclePosition determine_relative_position(const Circle2D &_circle) const;
+    PointPosition determine_relative_position(const Point2D &point) const;
+    CirclePosition determine_relative_position(const Circle2D &circle) const;
 
     double calculate_perimeter() const override;
     double calculate_area() const override;
 };
 
-std::istream &operator>>(std::istream &_istr, Circle2D &_val);
-std::ostream &operator<<(std::ostream &_ostr, const Circle2D &_val);
+std::istream &operator>>(std::istream &istr, Circle2D &value);
+std::ostream &operator<<(std::ostream &ostr, const Circle2D &value);
 SHAPE2D_END
 
 #endif // end CIRCLE2D_HPP
