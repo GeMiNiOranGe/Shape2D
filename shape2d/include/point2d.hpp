@@ -25,6 +25,15 @@ public:
     double calculate_distance_to(const Point2D &other) const;
 };
 
+inline bool operator==(const Point2D &left, const Point2D &right) {
+    return left.get_x_coord() == right.get_x_coord()
+        && left.get_y_coord() == right.get_y_coord();
+}
+
+inline bool operator!=(const Point2D &left, const Point2D &right) {
+    return !operator==(left, right);
+}
+
 std::istream &operator>>(std::istream &istr, Point2D &value);
 std::ostream &operator<<(std::ostream &ostr, const Point2D &value);
 SHAPE2D_END

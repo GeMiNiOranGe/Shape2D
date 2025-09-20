@@ -25,7 +25,7 @@ void Point2D::set_y_coord(const double &value) {
 double Point2D::calculate_distance_to(const Point2D &other) const {
     double distance_x = this->x_coord_ - other.x_coord_;
     double distance_y = this->y_coord_ - other.y_coord_;
-    return sqrt(distance_x * distance_x + distance_y * distance_y);
+    return hypot(distance_x, distance_y);
 }
 
 std::istream &operator>>(std::istream &istr, Point2D &value) {
